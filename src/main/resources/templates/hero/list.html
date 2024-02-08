@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+
+	Hero!!!
+	<a th:href="@{hero/add}">Add</a>
+
+	<th:block th:each="hero : ${heroList}">
+		<li th:text="${hero.name}"></li>
+	</th:block>
+
+</body>
+
+</html>

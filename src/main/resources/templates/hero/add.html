@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+
+<body>
+
+	Hero Add!!!
+
+	<form th:action="@{/hero}" method="post" th:object="${heroAddForm}">
+		<div>
+			<label for="roleId">ロール</label>
+			<select th:field="*{roleId}">
+				<option th:each="role : ${roleList}" th:value="${role.id}" th:text="${role.name}"></option>
+			</select>
+		</div>
+		<div class="mb-3 col-10">
+			<label for="name" class="form-label">名前</label>
+			<input th:field="*{name}" th:errorclass="error-form" type="text">
+			<div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+
+</body>
+
+</html>
