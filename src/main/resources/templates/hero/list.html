@@ -11,8 +11,8 @@
 	Hero!!!
 	<a th:href="@{hero/add}">Add</a>
 
-	<th:block th:each="hero : ${heroList}">
-		<li th:text="${hero.name}"></li>
+	<th:block th:each="hero : ${heroMap}">
+		<li th:text="${hero.value.name}"></li>
 	</th:block>
 
 </body>

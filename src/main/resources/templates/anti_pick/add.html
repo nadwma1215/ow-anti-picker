@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+
+<body>
+
+	Anti Hero Add!!!
+
+	<form th:action="@{/anti-pick}" method="post" th:object="${antiPickAddForm}">
+		<div>
+			<label for="heroId">ヒーロー</label>
+			<select th:field="*{heroId}">
+				<option th:each="hero : ${heroMap}" th:value="${hero.value.id}" th:text="${hero.value.name}"></option>
+			</select>
+		</div>
+		<div>
+			<label for="antiHeroId">アンチピック</label>
+			<select th:field="*{antiHeroId}">
+				<option th:each="hero : ${heroMap}" th:value="${hero.value.id}" th:text="${hero.value.name}"></option>
+			</select>
+		</div>
+
+		<div>
+			<label for="reason" class="form-label">理由</label>
+			<textarea th:field="*{reason}" th:errorclass="error-form" />
+			<div class="error" th:if="${#fields.hasErrors('reason')}" th:errors="*{reason}"></div>
+		</div>
+
+		<button type="submit">Submit</button>
+	</form>
+
+</body>
+
+</html>

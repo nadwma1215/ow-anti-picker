@@ -23,7 +23,7 @@ CREATE TABLE `anti_pick` (
   `id` int(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `hero_id` int(3) unsigned NOT NULL COMMENT 'キャラクタID',
   `anti_hero_id` int(3) unsigned NOT NULL COMMENT 'アンチキャラクタID',
-  `remarks` TEXT DEFAULT NULL COMMENT '備考',
+  `reason` TEXT DEFAULT NULL COMMENT '理由',
   `created` datetime NOT NULL COMMENT '登録日時',
   `modified` datetime NOT NULL COMMENT '更新日時',
   PRIMARY KEY (`id`),

@@ -1,5 +1,51 @@
 @charset "UTF-8";
 
+.top-content {
+	overflow: hidden;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: end;
+}
+
+.street {
+	background-image: url("../img/street_blur.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.hero-picker {
+	display: flex;
+	gap: 4px 8px;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.mb-4 {
+	margin-bottom: 12px;
+}
+
+.hero-picker .row {
+	flex-direction: row;
+}
+
+.hero-icon {
+	min-width: 35px;
+	min-height: 40px;
+	width: calc(3.5vw * 9 / 10);
+	height: calc(4vw * 9 / 10);
+	background-color: black;
+	border: solid 1px white;
+	border-radius: 4px;
+	opacity: 80%;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
 .error {
 	color: red;
 }

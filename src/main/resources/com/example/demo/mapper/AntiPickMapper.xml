@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapperとxmlのマッピング -->
+<mapper namespace="com.example.demo.mapper.AntiPickMapper">
+
+	<!-- 全件取得 -->
+	<select id="findAll"
+		resultType="com.example.demo.entity.AntiPick">
+		SELECT * FROM anti_pick
+	</select>
+
+	<!-- インサート -->
+	<insert id="save">
+		INSERT INTO anti_pick(
+			hero_id,
+			anti_hero_id,
+			reason,
+			created,
+			modified
+		)
+		values(
+			#{heroId},
+			#{antiHeroId},
+			#{reason},
+			NOW(),
+			NOW()
+		)
+	</insert>
+
+</mapper>
