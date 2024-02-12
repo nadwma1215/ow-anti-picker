@@ -1,6 +1,6 @@
 package com.example.demo.controller.antiPick;
 
-import java.util.Map;
+import java.util.List;
 
 import org.dozer.Mapper;
 import org.springframework.stereotype.Controller;
@@ -40,8 +40,8 @@ public class AntiPickAddController {
 		
 		form.setHeroId(heroId);
 		
-		Map<Integer, Hero> heroMap = heroMapper.findAll();
-		model.addAttribute("heroMap", heroMap);
+		List<Hero> heroList = heroMapper.findAll();
+		model.addAttribute(heroList);
 		model.addAttribute(form);
 		
 		return "anti_pick/add";
@@ -52,8 +52,8 @@ public class AntiPickAddController {
 		
 		if (bindingResult.hasErrors()){
             
-			Map<Integer, Hero> heroMap = heroMapper.findAll();
-            model.addAttribute("heroMap", heroMap);
+			List<Hero> heroList = heroMapper.findAll();
+            model.addAttribute(heroList);
             
             return "anti_pick/add";
         }

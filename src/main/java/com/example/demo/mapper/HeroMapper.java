@@ -1,8 +1,7 @@
 package com.example.demo.mapper;
 
-import java.util.Map;
+import java.util.List;
 
-import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.entity.Hero;
@@ -10,8 +9,7 @@ import com.example.demo.entity.Hero;
 @Mapper
 public interface HeroMapper {
 	
-	@MapKey("id")
-	public Map<Integer, Hero> findAll();
+	public List<Hero> findAll();
 	
 	public int save(Hero hero);
 

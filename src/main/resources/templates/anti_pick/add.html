@@ -15,13 +15,13 @@
 		<div>
 			<label for="heroId">ヒーロー</label>
 			<select th:field="*{heroId}">
-				<option th:each="hero : ${heroMap}" th:value="${hero.value.id}" th:text="${hero.value.name}"></option>
+				<option th:each="hero : ${heroMap}" th:value="${hero.id}" th:text="${hero.name}"></option>
 			</select>
 		</div>
 		<div>
 			<label for="antiHeroId">アンチピック</label>
 			<select th:field="*{antiHeroId}">
-				<option th:each="hero : ${heroMap}" th:value="${hero.value.id}" th:text="${hero.value.name}"></option>
+				<option th:each="hero : ${heroMap}" th:value="${hero.id}" th:text="${hero.name}"></option>
 			</select>
 		</div>
 

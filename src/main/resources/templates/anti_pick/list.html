@@ -12,8 +12,8 @@
 	anti!!!
 	↓アンチピックを追加する
 
-	<th:block th:each="hero : ${heroMap}">
-		<li><a th:href="@{anti-pick/add/} + ${hero.value.id}" th:text="${hero.value.name}">あああ</a></li>
+	<th:block th:each="hero : ${heroList}">
+		<li><a th:href="@{anti-pick/add/} + ${hero.id}" th:text="${hero.name}">あああ</a></li>
 	</th:block>
 
 	<br />
@@ -27,10 +27,10 @@
 		</thead>
 
 		<tbody>
-			<th:block th:each="antiPick : ${antiPickMap}">
+			<th:block th:each="antiPick : ${antiPickList}">
 				<tr>
-					<td th:text="${heroMap.get(antiPick.value.heroId).name}"></td>
-					<td th:text="${heroMap.get(antiPick.value.antiHeroId).name}"></td>
+					<td th:text="${heroList.get(antiPick.heroId).name}"></td>
+					<td th:text="${heroList.get(antiPick.antiHeroId).name}"></td>
 				</tr>
 			</th:block>
 		</tbody>

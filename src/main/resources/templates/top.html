@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link th:href="@{/css/main.css}" rel="stylesheet" />
+	<script th:src="@{/js/top.js}"></script>
+</head>
+
+<body class="top-content street">
+
+	<!-- ヒーローピッカー -->
+	<div class="hero-picker mb-4">
+
+		<!-- 一列目（前半） -->
+		<div class="hero-picker row">
+			<th:block th:each="hero, stat : ${heroList}">
+				<th:block th:if="${stat.index < stat.size / 2}">
+
+					<div class="hero">
+						<th:block th:if="${hero.imageName}">
+							<img class="hero-icon" th:src="@{/img/hero/{imageName}(imageName=${hero.imageName})}">
+						</th:block>
+						<th:block th:unless="${hero.imageName}">
+							<img class="hero-icon" th:src="@{/img/common.png}">
+						</th:block>
+
+						<div class="hero-name">
+							<span th:text="${hero.name}" />
+						</div>
+					</div>
+
+				</th:block>
+			</th:block>
+		</div>
+
+		<!-- 二列目（後半） -->
+		<div class="hero-picker row">
+			<th:block th:each="hero, stat : ${heroList}">
+				<th:block th:if="${stat.index >= stat.size / 2}">
+
+					<div class="hero">
+						<th:block th:if="${hero.imageName}">
+							<img class="hero-icon" th:src="@{/img/hero/{imageName}(imageName=${hero.imageName})}">
+						</th:block>
+						<th:block th:unless="${hero.imageName}">
+							<img class="hero-icon" th:src="@{/img/common.png}">
+						</th:block>
+
+						<div class="hero-name">
+							<span th:text="${hero.name}" />
+						</div>
+					</div>
+
+				</th:block>
+			</th:block>
+		</div>
+
+		</th:block>
+	</div>
+
+	</div>
+
+</body>
+
+</html>

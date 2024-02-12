@@ -1,6 +1,6 @@
 package com.example.demo.controller.hero;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +20,9 @@ public class HeroListController {
 	@GetMapping("/hero")
 	public String index(Model model) {
 		
-		Map<Integer, Hero> heroMap = mapper.findAll();
-		model.addAttribute("heroMap", heroMap);
+		List<Hero> heroList = mapper.findAll();
+		Hero.sort(heroList);
+		model.addAttribute(heroList);
 		
 		return "hero/list";
 	}

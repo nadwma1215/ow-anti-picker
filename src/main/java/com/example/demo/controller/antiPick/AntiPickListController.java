@@ -1,6 +1,6 @@
 package com.example.demo.controller.antiPick;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,11 +23,11 @@ public class AntiPickListController {
 	@GetMapping("/anti-pick")
 	public String index(Model model) {
 		
-		Map<Integer, Hero> heroMap = heroMapper.findAll();
-		Map<Integer, AntiPick> antiPickMap = antiPickMapper.findAll();
+		List<Hero> heroList = heroMapper.findAll();
+		List<AntiPick> antiPickList = antiPickMapper.findAll();
 		
-		model.addAttribute("heroMap", heroMap);
-		model.addAttribute("antiPickMap", antiPickMap);
+		model.addAttribute(heroList);
+		model.addAttribute(antiPickList);
 		
 		return "anti_pick/list";
 	}
