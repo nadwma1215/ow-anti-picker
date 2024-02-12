@@ -1,11 +1,12 @@
 @charset "UTF-8";
 
+/* トップ画面用 */
+
 .top-content {
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: end;
+	/* bodyにデフォルトで8pxのマージンがあるので打ち消し */
 	margin: 0px;
+	position: relative;
+	height: 100vh;
 }
 
 .street {
@@ -16,18 +17,26 @@
 }
 
 .hero-picker {
+	position: absolute;
+	bottom: 0%;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-bottom: 16px;
+}
+
+.hero-picker-col {
 	display: flex;
-	gap: 4px 8px;
+	gap: 4px 0px;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 }
 
-.mb-4 {
-	margin-bottom: 16px;
-}
-
-.hero-picker .row {
+.hero-picker-row {
+	display: flex;
+	gap: 0px 8px;
+	justify-content: center;
+	align-items: center;
 	flex-direction: row;
 }
 
@@ -59,12 +68,6 @@
 	border-radius: 4px;
 }
 
-.active {
-	transform: scale(1.1, 1.1);
-	outline: solid 1.5px #f5a742;
-	box-shadow: 1px 1px 24px 4px #f5a742;
-}
-
 .hero-name {
 	display: none;
 	position: absolute;
@@ -77,6 +80,14 @@
 	padding: 0px 2px;
 	z-index: 1;
 }
+
+.active {
+	transform: scale(1.1, 1.1);
+	outline: solid 1.5px #f5a742;
+	box-shadow: 1px 1px 24px 4px #f5a742;
+}
+
+/* ---- */
 
 .error {
 	color: red;

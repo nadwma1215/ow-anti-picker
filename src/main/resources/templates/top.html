@@ -9,12 +9,16 @@
 </head>
 
 <body class="top-content street">
+	
+	<th:block th:each="antiPick, stat : ${antiPickList}">
+		<span th:text="${antiPick.heroId}"></span>
+	</th:block>
 
 	<!-- ヒーローピッカー -->
-	<div class="hero-picker mb-4">
+	<div class="hero-picker hero-picker-col">
 
 		<!-- 一列目（前半） -->
-		<div class="hero-picker row">
+		<div class="hero-picker-row">
 			<th:block th:each="hero, stat : ${heroList}">
 				<th:block th:if="${stat.index < stat.size / 2}">
 
@@ -36,7 +40,7 @@
 		</div>
 
 		<!-- 二列目（後半） -->
-		<div class="hero-picker row">
+		<div class="hero-picker-row">
 			<th:block th:each="hero, stat : ${heroList}">
 				<th:block th:if="${stat.index >= stat.size / 2}">
 
