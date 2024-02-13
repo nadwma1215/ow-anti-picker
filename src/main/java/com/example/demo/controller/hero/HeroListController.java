@@ -14,16 +14,16 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class HeroListController {
-	
+
 	private final HeroMapper mapper;
-	
+
 	@GetMapping("/hero")
 	public String index(Model model) {
-		
+
 		List<Hero> heroList = mapper.findAll();
-		Hero.sort(heroList);
+
 		model.addAttribute(heroList);
-		
+
 		return "hero/list";
 	}
 

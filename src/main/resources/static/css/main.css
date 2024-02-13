@@ -16,6 +16,32 @@
 	background-position: center center;
 }
 
+.anti-pick-list{
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 5px;
+}
+
+.anti-pick-list > *{
+	flex-grow: 1;
+}
+
+.anti-pick-icon {
+	/*
+	min-width: 50px;
+	min-height: 50px;
+	width: 3.5vw;
+	height: 3.5vw;
+	*/
+	object-fit: cover;
+	/*
+	background-color: rgba(0, 0, 0, 0.7);
+	border: solid 1px white;
+	*/
+	border-radius: 4px;
+}
+
 .hero-picker {
 	position: absolute;
 	bottom: 0%;
@@ -53,10 +79,6 @@
 	outline: solid 1.5px white;
 }
 
-.hero:hover .hero-name {
-	display: block;
-}
-
 .hero-icon {
 	min-width: 50px;
 	min-height: 50px;
@@ -69,7 +91,6 @@
 }
 
 .hero-name {
-	display: none;
 	position: absolute;
 	top: 90%;
 	white-space: nowrap;
@@ -78,7 +99,11 @@
 	line-height: 120%;
 	border-radius: 2px;
 	padding: 0px 2px;
-	z-index: 1;
+	z-index: 50;
+}
+
+.display-none {
+	display: none;
 }
 
 .active {

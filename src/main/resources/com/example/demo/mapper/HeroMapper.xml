@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
+
 <!-- Mapperとxmlのマッピング -->
 <mapper namespace="com.example.demo.mapper.HeroMapper">
 
@@ -9,21 +9,65 @@
 	<select id="findAll" resultType="com.example.demo.entity.Hero">
 		SELECT * FROM hero
 	</select>
-	
+
+	<select id="findAllWithAntiPick" resultMap="findAllWithAntiPick">
+		SELECT
+			hero.id,
+			hero.role_id,
+			hero.image_name,
+			hero.name,
+			hero.created,
+			hero.modified,
+			anti_pick.id as anti_pick_id,
+			anti_pick.hero_id,
+			anti_pick.anti_hero_id,
+			h.name as anti_hero_name,
+			h.image_name as anti_hero_image_name,
+			anti_pick.reason,
+			anti_pick.created as anti_pick_created,
+			anti_pick.modified as anti_pick_modified
+		FROM hero
+		LEFT JOIN anti_pick 
+			ON hero.id = anti_pick.hero_id
+		LEFT JOIN hero as h
+			ON anti_pick.anti_hero_id = h.id
+	</select>
+
+	<resultMap id="findAllWithAntiPick"
+		type="com.example.demo.dto.HeroWithAntiPickDTO">
+		<id property="id" column="id" />
+		<result property="roleId" column="role_id" />
+		<result property="imageName" column="image_name" />
+		<result property="name" column="name" />
+		<result property="created" column="created" />
+		<result property="modifired" column="modifired" />
+		<collection property="AntiPickWithHeroDTOList"
+			ofType="com.example.demo.dto.AntiPickWithHeroDTO">
+			<id property="id" column="anti_pick_id" />
+			<result property="heroId" column="hero_id" />
+			<result property="antiHeroId" column="anti_hero_id" />
+			<result property="antiHeroName" column="anti_hero_name" />
+			<result property="antiHeroImageName" column="anti_hero_image_name" />
+			<result property="reason" column="reason" />
+			<result property="created" column="anti_pick_created" />
+			<result property="modifired" column="anti_pick_modifired" />
+		</collection>
+	</resultMap>
+
 	<!-- インサート -->
 	<insert id="save">
 		INSERT INTO hero(
-			role_id,
-			name,
-			created,
-			modified
+		role_id,
+		name,
+		created,
+		modified
 		)
 		values(
-			#{roleId},
-			#{name},
-			NOW(),
-			NOW()
+		#{roleId},
+		#{name},
+		NOW(),
+		NOW()
 		)
 	</insert>
-	
+
 </mapper>

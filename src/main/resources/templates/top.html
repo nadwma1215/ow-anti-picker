@@ -9,9 +9,22 @@
 </head>
 
 <body class="top-content street">
-	
-	<th:block th:each="antiPick, stat : ${antiPickList}">
-		<span th:text="${antiPick.heroId}"></span>
+
+	<!-- アンチピックヒーロー -->
+	<th:block th:each="hero, heroStat : ${heroListWithAntiPick}">
+		<div th:id="'hero-' + ${heroStat.index} + '-anti-pick-list'" class="anti-pick-list display-none">
+			<th:block th:each="antiPick, antiPickStat : ${hero.AntiPickWithHeroDTOList}">
+
+				<th:block th:if="${antiPick.antiHeroImageName}">
+					<img class="anti-pick-icon"
+						th:src="@{/img/hero/{imageName}(imageName=${antiPick.antiHeroImageName})}">
+				</th:block>
+				<th:block th:unless="${antiPick.antiHeroImageName}">
+					<img class="anti-pick-icon" th:src="@{/img/hero/common.png}">
+				</th:block>
+
+			</th:block>
+		</div>
 	</th:block>
 
 	<!-- ヒーローピッカー -->
@@ -19,18 +32,18 @@
 
 		<!-- 一列目（前半） -->
 		<div class="hero-picker-row">
-			<th:block th:each="hero, stat : ${heroList}">
+			<th:block th:each="hero, stat : ${heroListWithAntiPick}">
 				<th:block th:if="${stat.index < stat.size / 2}">
 
-					<div class="hero">
+					<div th:id="'hero-' + ${stat.index}" class="hero">
 						<th:block th:if="${hero.imageName}">
 							<img class="hero-icon" th:src="@{/img/hero/{imageName}(imageName=${hero.imageName})}">
 						</th:block>
 						<th:block th:unless="${hero.imageName}">
-							<img class="hero-icon" th:src="@{/img/common.png}">
+							<img class="hero-icon" th:src="@{/img/hero/common.png}">
 						</th:block>
 
-						<div class="hero-name">
+						<div class="hero-name display-none">
 							<span th:text="${hero.name}" />
 						</div>
 					</div>
@@ -41,18 +54,18 @@
 
 		<!-- 二列目（後半） -->
 		<div class="hero-picker-row">
-			<th:block th:each="hero, stat : ${heroList}">
+			<th:block th:each="hero, stat : ${heroListWithAntiPick}">
 				<th:block th:if="${stat.index >= stat.size / 2}">
 
-					<div class="hero">
+					<div th:id="'hero-' + ${stat.index}" class="hero">
 						<th:block th:if="${hero.imageName}">
 							<img class="hero-icon" th:src="@{/img/hero/{imageName}(imageName=${hero.imageName})}">
 						</th:block>
 						<th:block th:unless="${hero.imageName}">
-							<img class="hero-icon" th:src="@{/img/common.png}">
+							<img class="hero-icon" th:src="@{/img/hero/common.png}">
 						</th:block>
 
-						<div class="hero-name">
+						<div class="hero-name display-none">
 							<span th:text="${hero.name}" />
 						</div>
 					</div>
@@ -60,9 +73,6 @@
 				</th:block>
 			</th:block>
 		</div>
-
-		</th:block>
-	</div>
 
 	</div>
 

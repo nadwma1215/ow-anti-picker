@@ -11,6 +11,8 @@ public interface AntiPickMapper {
 	
 	public List<AntiPick> findAll();
 	
+	public List<AntiPick> findAllWithHeroName();
+	
 	public int save(AntiPick antiPick);
 
 }
