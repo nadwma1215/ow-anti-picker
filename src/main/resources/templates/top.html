@@ -15,13 +15,19 @@
 		<div th:id="'hero-' + ${heroStat.index} + '-anti-pick-list'" class="anti-pick-list display-none">
 			<th:block th:each="antiPick, antiPickStat : ${hero.AntiPickWithHeroDTOList}">
 
-				<th:block th:if="${antiPick.antiHeroImageName}">
-					<img class="anti-pick-icon"
-						th:src="@{/img/hero/{imageName}(imageName=${antiPick.antiHeroImageName})}">
-				</th:block>
-				<th:block th:unless="${antiPick.antiHeroImageName}">
-					<img class="anti-pick-icon" th:src="@{/img/hero/common.png}">
-				</th:block>
+				<div class="anti-pick-hero">
+					<th:block th:if="${antiPick.antiHeroImageName}">
+						<img class="anti-pick-hero-icon"
+							th:src="@{/img/hero/{imageName}(imageName=${antiPick.antiHeroImageName})}">
+					</th:block>
+					<th:block th:unless="${antiPick.antiHeroImageName}">
+						<img class="anti-pick-hero-icon" th:src="@{/img/hero/common.png}">
+					</th:block>
+
+					<div class="anti-pick-hero-reason">
+						<span th:text="${antiPick.reason}" />
+					</div>
+				</div>
 
 			</th:block>
 		</div>

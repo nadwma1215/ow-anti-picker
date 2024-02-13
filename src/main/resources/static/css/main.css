@@ -2,11 +2,23 @@
 
 /* トップ画面用 */
 
+@font-face {
+	font-family: "top-font";
+	src: url("../fonts/07LogoTypeGothic7.ttf");
+}
+
+/* 定数 */
+:root {
+	--hero-img-width: 256px;
+}
+
 .top-content {
 	/* bodyにデフォルトで8pxのマージンがあるので打ち消し */
 	margin: 0px;
 	position: relative;
 	height: 100vh;
+	overflow: hidden;
+	font-family: top-font;
 }
 
 .street {
@@ -16,30 +28,37 @@
 	background-position: center center;
 }
 
-.anti-pick-list{
+.anti-pick-list {
+	max-height: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	flex-wrap: wrap;
 	gap: 5px;
+	overflow: scroll;
 }
 
-.anti-pick-list > *{
-	flex-grow: 1;
-}
-
-.anti-pick-icon {
-	/*
-	min-width: 50px;
-	min-height: 50px;
-	width: 3.5vw;
-	height: 3.5vw;
-	*/
-	object-fit: cover;
-	/*
-	background-color: rgba(0, 0, 0, 0.7);
-	border: solid 1px white;
-	*/
+.anti-pick-hero {
+	position: relative;
+	max-width: var(--hero-img-width);
 	border-radius: 4px;
+}
+
+.anti-pick-hero-icon {
+	object-fit: cover;
+}
+
+.anti-pick-hero-reason {
+	position: absolute;
+	bottom: 10%;
+	width: 100%;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.4);
+	color: white;
+	line-height: 120%;
+	border-radius: 2px;
+	z-index: 50;
+	box-sizing: border-box;
+	padding: 2% 4%;
 }
 
 .hero-picker {
@@ -74,7 +93,7 @@
 }
 
 .hero:hover .hero-icon {
-	transform: scale(1.0, 1.0);
+	transform: scale(1.05, 1.05);
 	background-color: whitesmoke;
 	outline: solid 1.5px white;
 }
@@ -88,6 +107,7 @@
 	background-color: rgba(0, 0, 0, 0.7);
 	border: solid 1px white;
 	border-radius: 4px;
+	transition: 0.1s;
 }
 
 .hero-name {
@@ -99,17 +119,31 @@
 	line-height: 120%;
 	border-radius: 2px;
 	padding: 0px 2px;
-	z-index: 50;
+	z-index: 100;
+	letter-spacing: 0.1rem;
 }
 
+/*
+ * 非表示用 色々な場所で使われる
+ */
 .display-none {
 	display: none;
 }
 
+/*
+ * 選択用のstyle
+ */
 .active {
-	transform: scale(1.1, 1.1);
+	transform: scale(1.15, 1.15);
 	outline: solid 1.5px #f5a742;
 	box-shadow: 1px 1px 24px 4px #f5a742;
+}
+
+/*
+ * イベントを無効化する。選択中はhoverを無効にしたいため
+ */
+.event-none {
+	pointer-events: none;
 }
 
 /* ---- */

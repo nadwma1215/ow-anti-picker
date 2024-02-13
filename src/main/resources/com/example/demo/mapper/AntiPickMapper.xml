@@ -11,21 +11,55 @@
 		SELECT * FROM anti_pick
 	</select>
 
+	<select id="findAllWithHero" resultMap="findAllWithHero">
+		SELECT
+			anti_pick.id,
+			anti_pick.hero_id,
+			anti_pick.anti_hero_id,
+			anti_pick.reason,
+			anti_pick.created,
+			anti_pick.modified,
+			h1.name as hero_name,
+			h1.image_name as hero_image_name,
+			h2.name as anti_hero_name,
+			h2.image_name as anti_hero_image_name
+		FROM anti_pick
+		LEFT JOIN hero as h1
+			ON anti_pick.hero_id = h1.id
+		LEFT JOIN hero as h2
+			ON anti_pick.anti_hero_id = h2.id
+	</select>
+
+	<resultMap id="findAllWithHero"
+		type="com.example.demo.dto.AntiPickWithHeroDTO">
+		<id property="id" column="id" />
+		<result property="roleId" column="role_id" />
+		<result property="imageName" column="image_name" />
+		<result property="name" column="name" />
+		<result property="created" column="created" />
+		<result property="modifired" column="modifired" />
+		<result property="heroName" column="hero_name" />
+		<result property="heroImageName" column="hero_image_name" />
+		<result property="antiHeroName" column="anti_hero_name" />
+		<result property="antiHeroImageName"
+			column="anti_hero_image_name" />
+	</resultMap>
+
 	<!-- インサート -->
 	<insert id="save">
 		INSERT INTO anti_pick(
-			hero_id,
-			anti_hero_id,
-			reason,
-			created,
-			modified
+		hero_id,
+		anti_hero_id,
+		reason,
+		created,
+		modified
 		)
 		values(
-			#{heroId},
-			#{antiHeroId},
-			#{reason},
-			NOW(),
-			NOW()
+		#{heroId},
+		#{antiHeroId},
+		#{reason},
+		NOW(),
+		NOW()
 		)
 	</insert>
 

@@ -27,10 +27,10 @@
 		</thead>
 
 		<tbody>
-			<th:block th:each="antiPick : ${antiPickList}">
+			<th:block th:each="antiPick : ${AntiPickWithHeroDTOList}">
 				<tr>
-					<td th:text="${heroList.get(antiPick.heroId).name}"></td>
-					<td th:text="${heroList.get(antiPick.antiHeroId).name}"></td>
+					<td th:text="${antiPick.heroName}"></td>
+					<td th:text="${antiPick.antiHeroName}"></td>
 				</tr>
 			</th:block>
 		</tbody>

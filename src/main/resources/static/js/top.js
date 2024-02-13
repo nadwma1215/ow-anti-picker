@@ -15,12 +15,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
 			// 現在選択中の要素を未選択状態に変更
 			for (i = 0; i < activeButtons.length; i++) {
-				activeButtons[i].children[1].classList.add("display-none");
+				activeButtons[i].parentElement.classList.remove("event-none");
+				activeButtons[i].parentElement.children[1].classList.add("display-none");
 				activeButtons[i].classList.remove("active");
 			}
 			// hero-pickerの選択要素のクラスを操作
-			this.classList.add("active");
+			this.classList.add("event-none");
 			this.children[1].classList.remove("display-none");
+			this.children[0].classList.add("active");
 
 			// anti-pick-listの表示の初期化
 			for (i = 0; i < antiPickLists.length; i++) {
