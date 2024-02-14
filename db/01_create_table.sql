@@ -20,9 +20,9 @@ CREATE TABLE `hero` (
 ) ENGINE=InnoDB CHARSET=utf8mb3 COMMENT='ヒーロー';
 
 CREATE TABLE `anti_pick` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `hero_id` int unsigned NOT NULL COMMENT 'キャラクタID',
-  `anti_hero_id` int unsigned NOT NULL COMMENT 'アンチキャラクタID',
+  `id` int(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `hero_id` int(3) unsigned NOT NULL COMMENT 'キャラクタID',
+  `anti_hero_id` int(3) unsigned NOT NULL COMMENT 'アンチキャラクタID',
   `reason` text COMMENT '理由',
   `created` datetime NOT NULL COMMENT '登録日時',
   `modified` datetime NOT NULL COMMENT '更新日時',
@@ -31,3 +31,12 @@ CREATE TABLE `anti_pick` (
   CONSTRAINT `anti_pick_hero_key` FOREIGN KEY (`hero_id`) REFERENCES `hero` (`id`)
   CONSTRAINT `anti_pick_anti_hero_key` FOREIGN KEY (`anti_hero_id`) REFERENCES `hero` (`id`)
 ) ENGINE=InnoDB CHARSET=utf8mb3 COMMENT='アンチピック';
+
+CREATE TABLE `user` (
+  `id` int(6) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(20) NOT NULL COMMENT '名前',
+  `password` varchar(255) NOT NULL COMMENT 'パスワード',
+  `created` datetime NOT NULL COMMENT '登録日時',
+  `modified` datetime NOT NULL COMMENT '更新日時',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARSET=utf8mb3 COMMENT='ユーザ';

@@ -85,6 +85,10 @@
 	<a class="mypage-btn" th:href="@{/anti-pick}">
 		マイページ
 	</a>
+	
+	<form th:action="@{/logout}" method="post">
+        <input type="submit" name="logout" value="ログアウト"/>
+    </form>
 
 </body>
 
