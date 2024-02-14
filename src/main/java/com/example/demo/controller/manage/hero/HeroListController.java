@@ -1,4 +1,4 @@
-package com.example.demo.controller.hero;
+package com.example.demo.controller.manage.hero;
 
 import java.util.List;
 
@@ -17,14 +17,14 @@ public class HeroListController {
 
 	private final HeroMapper mapper;
 
-	@GetMapping("/hero")
+	@GetMapping("/manage/hero")
 	public String index(Model model) {
 
 		List<Hero> heroList = mapper.findAll();
 
 		model.addAttribute(heroList);
 
-		return "hero/list";
+		return "manage/hero/list";
 	}
 
 }

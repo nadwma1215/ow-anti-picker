@@ -1,4 +1,4 @@
-package com.example.demo.controller.hero;
+package com.example.demo.controller.manage.hero;
 
 import java.util.List;
 
@@ -34,16 +34,16 @@ public class HeroAddController {
 	 * @param form
 	 * @return
 	 */
-	@GetMapping("/hero/add")
+	@GetMapping("/manage/hero/add")
 	public String add(Model model, HeroAddForm form) {
 		
 		List<Role> roleList = roleMapper.findAll();
 		model.addAttribute(roleList);
 		
-		return "hero/add";
+		return "manage/hero/add";
 	}
 	
-	@PostMapping("/hero")
+	@PostMapping("/manage/hero")
 	public String register(Model model, @ModelAttribute @Validated HeroAddForm form, BindingResult bindingResult) {
 		
 		if (bindingResult.hasErrors()){
@@ -51,12 +51,12 @@ public class HeroAddController {
             List<Role> roleList = roleMapper.findAll();
             model.addAttribute(roleList);
             
-            return "hero/add";
+            return "manage/hero/add";
         }
 
 		heroMapper.save(dozer.map(form, Hero.class));
 		
-		return "redirect:/hero";
+		return "redirect:/manage/hero";
 	}
 
 }

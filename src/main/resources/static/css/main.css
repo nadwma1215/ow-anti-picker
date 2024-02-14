@@ -10,6 +10,7 @@
 /* 定数 */
 :root {
 	--hero-img-width: 256px;
+	--ow-orange: #F06414;
 }
 
 .top-content {
@@ -35,6 +36,8 @@
 	flex-wrap: wrap;
 	gap: 5px;
 	overflow: scroll;
+	box-sizing: border-box;
+	padding: 4px 0px;
 }
 
 .anti-pick-hero {
@@ -67,6 +70,7 @@
 	left: 50%;
 	transform: translateX(-50%);
 	margin-bottom: 16px;
+	z-index: 100;
 }
 
 .hero-picker-col {
@@ -136,7 +140,8 @@
 .active {
 	transform: scale(1.15, 1.15);
 	outline: solid 1.5px #f5a742;
-	box-shadow: 1px 1px 24px 4px #f5a742;
+	box-shadow: 1px 1px 24px 4px var(--ow-orange);
+	background-color: var(--ow-orange);
 }
 
 /*
@@ -144,6 +149,22 @@
  */
 .event-none {
 	pointer-events: none;
+}
+
+.mypage-btn {
+	position: absolute;
+	top: 2%;
+	right: 2%;
+	z-index: 100;
+	background-color: var(--ow-orange);
+	opacity: 0.8;
+	color: white;
+	padding: 16px;
+	border-radius: 4px;
+}
+
+.mypage-btn:hover {
+	opacity: 1;
 }
 
 /* ---- */

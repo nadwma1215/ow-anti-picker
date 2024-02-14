@@ -11,7 +11,7 @@
 
 	Hero Add!!!
 
-	<form th:action="@{/hero}" method="post" th:object="${heroAddForm}">
+	<form th:action="@{/manage/hero}" method="post" th:object="${heroAddForm}">
 		<div>
 			<label for="roleId">ロール</label>
 			<select th:field="*{roleId}">

@@ -9,7 +9,7 @@
 <body>
 
 	Hero!!!
-	<a th:href="@{hero/add}">Add</a>
+	<a th:href="@{/manage/hero/add}">Add</a>
 
 	<th:block th:each="hero : ${heroList}">
 		<li th:text="${hero.name}"></li>
