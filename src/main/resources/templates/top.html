@@ -5,9 +5,24 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link th:href="@{/css/main.css}" rel="stylesheet" />
+	<link rel="preload" as="font" th:href="@{/fonts/07LogoTypeGothic7.ttf}" crossorigin />
 </head>
 
 <body class="top-content street">
+
+	<div class="nav-bar">
+		<div class="logo">
+			<a th:href="@{/}"><img class="logo" th:src="@{/img/logo.png}"></a>
+		</div>
+		<div class="nav-menu">
+			<a sec:authorize="isAuthenticated()" class="mypage-btn" th:href="@{/anti-pick}">
+				マイアンチピック
+			</a>
+			<a sec:authorize="!isAuthenticated()" class="mypage-btn" th:href="@{/anti-pick}">
+				ログイン
+			</a>
+		</div>
+	</div>
 
 	<!-- アンチピックヒーロー -->
 	<th:block th:each="hero, heroStat : ${heroListWithCommonAntiPick}">
@@ -81,16 +96,9 @@
 
 	</div>
 
-	<a sec:authorize="isAuthenticated()" class="mypage-btn" th:href="@{/anti-pick}">
-		マイアンチピック
-	</a>
-	<a sec:authorize="!isAuthenticated()" class="mypage-btn" th:href="@{/anti-pick}">
-		ログイン
-	</a>
-	
 	<div sec:authorize="isAuthenticated()">
 		<form th:action="@{/logout}" method="post">
-			<button type="submit">ログアウト</button>
+			<button type="submit" class="logout-btn">ログアウト</button>
 		</form>
 	</div>
 

@@ -4,21 +4,43 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link th:href="@{/css/main.css}" rel="stylesheet" />
+	<link rel="preload" as="font" th:href="@{/fonts/07LogoTypeGothic7.ttf}" crossorigin />
 </head>
 
 <body>
-	<form method="post" th:action="@{/login}">
-		<label for="username">ユーザー名</label>
-		<input type="text" id="username" name="username" placeholder="ユーザー名">
-		<label for="password">パスワード</label>
-		<input type="password" id="password" name="password" placeholder="パスワード">
-		<div>
-			<button type="submit">ログイン</button>
+
+	<div class="nav-bar">
+		<div class="logo">
+			<a th:href="@{/}"><img class="logo" th:src="@{/img/logo.png}"></a>
 		</div>
-	</form>
-	
-	<a th:href="@{/user/add}">新規登録はこちら</a>
-	<a th:href="@{/}">トップへ</a>
+		<div class="nav-menu">
+			<a sec:authorize="isAuthenticated()" class="mypage-btn" th:href="@{/anti-pick}">
+				マイアンチピック
+			</a>
+			<a sec:authorize="!isAuthenticated()" class="mypage-btn" th:href="@{/anti-pick}">
+				ログイン
+			</a>
+		</div>
+	</div>
+
+	<div class="content-center">
+
+		<form method="post" th:action="@{/login}">
+			<div class="form width-100">
+				<h2>ログイン</h2>
+				<div class="form-group">
+					<input type="text" id="username" name="username" class="form-text" placeholder="ユーザー名">
+					<input type="password" id="password" name="password" class="form-text" placeholder="パスワード">
+				</div>
+				<div>
+					<button type="submit" class="form-btn">ログイン</button>
+				</div>
+				<a th:href="@{/user/add}" class="form-btn-secondary">アカウント作成はこちら</a>
+			</div>
+		</form>
+
+	</div>
 
 </body>
 

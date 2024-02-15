@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-/* トップ画面用 */
-
 @font-face {
 	font-family: "top-font";
 	src: url("../fonts/07LogoTypeGothic7.ttf");
@@ -11,15 +9,66 @@
 :root {
 	--hero-img-width: 256px;
 	--ow-orange: #F06414;
+	--ow-blue: #0074e0;
+	--nav-bar: rgba(229, 235, 244, .8);
 }
+
+/* ヘッダー */
+
+.nav-bar {
+	position: fixed;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 4px 16px;
+	background-color: var(--nav-bar);
+	right: 32px;
+	left: 32px;
+	top: 16px;
+	height: 48px;
+	border-radius: 16px;
+	box-sizing: border-box;
+}
+
+.logo {
+	height: 100%;
+}
+
+.nav-menu {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}
+
+.mypage-btn {
+	display: flex;
+	box-sizing: border-box;
+	padding: 10px;
+	align-items: center;
+	height: 90%;
+	background-color: var(--ow-orange);
+	opacity: 0.85;
+	color: white;
+	border-radius: 12px;
+	text-decoration: none;
+}
+
+.mypage-btn:hover {
+	opacity: 1;
+}
+
+/* トップ画面用 */
 
 .top-content {
 	/* bodyにデフォルトで8pxのマージンがあるので打ち消し */
 	margin: 0px;
+	padding-top: 72px;
 	position: relative;
 	height: 100vh;
 	overflow: hidden;
 	font-family: top-font;
+	box-sizing: border-box;
 }
 
 .street {
@@ -151,25 +200,8 @@
 	pointer-events: none;
 }
 
-.mypage-btn {
-	position: absolute;
-	top: 2%;
-	right: 2%;
-	z-index: 100;
-	background-color: var(--ow-orange);
-	opacity: 0.85;
-	color: white;
-	padding: 16px 10px;
-	border-radius: 8px;
-	text-decoration: none;
-}
-
-.mypage-btn:hover {
-	opacity: 1;
-}
-
 /* ボタンのデザインの初期化とpositionの設定 */
-button {
+.logout-btn {
 	position: fixed;
 	bottom: 2%;
 	right: 2%;
@@ -187,4 +219,87 @@ button {
 	font-family: top-font;
 }
 
+/* フォーム用 */
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem 0;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem 0;
+	width: 100%;
+}
+
+.form-text {
+	min-width: 10rem;
+	max-width: 20rem;
+	width: 60%;
+	padding: 0.5rem;
+	font-size: 1.0rem;
+	border: 1px solid lightgray;
+	border-radius: 4px;
+}
+
+.form-btn {
+	outline: none;
+	border: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	font-family: top-font;
+	text-decoration: none;
+
+	padding: 0.8rem 1.6rem;
+	border-radius: 8px;
+	background-color: var(--ow-blue);
+	color: white;
+	cursor: pointer;
+}
+
+.form-btn-secondary {
+	outline: none;
+	background: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	font-family: top-font;
+	text-decoration: none;
+
+	padding: 0.8rem 1.6rem;
+	border: 1px solid var(--ow-blue);
+	border-radius: 8px;
+	color: var(--ow-blue);
+	cursor: pointer;
+}
+
+.form-btn:hover,
+.form-btn-secondary:hover {
+	opacity: 0.8;
+}
+
 /* ---- */
+
+body {
+	min-height: 100vh;
+	margin: 0px;
+	font-family: top-font;
+}
+
+.content-center {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.width-100 {
+	width: 100vw;
+}
