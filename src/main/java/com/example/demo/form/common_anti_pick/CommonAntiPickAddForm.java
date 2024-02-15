@@ -1,4 +1,4 @@
-package com.example.demo.form.anti_pick;
+package com.example.demo.form.common_anti_pick;
 
 
 
@@ -9,10 +9,7 @@ import lombok.Data;
  * ヒーロー追加 Form
  */
 @Data
-public class AntiPickAddForm {
-
-	@NotNull
-	private int userId;
+public class CommonAntiPickAddForm {
 	
 	@NotNull
 	private int heroId;

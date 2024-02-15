@@ -10,9 +10,9 @@
 <body class="top-content street">
 
 	<!-- アンチピックヒーロー -->
-	<th:block th:each="hero, heroStat : ${heroListWithAntiPick}">
+	<th:block th:each="hero, heroStat : ${heroListWithCommonAntiPick}">
 		<div th:id="'hero-' + ${heroStat.index} + '-anti-pick-list'" class="anti-pick-list display-none">
-			<th:block th:each="antiPick, antiPickStat : ${hero.AntiPickWithHeroDTOList}">
+			<th:block th:each="antiPick, antiPickStat : ${hero.commonAntiPickWithHeroDTOList}">
 
 				<div class="anti-pick-hero">
 					<th:block th:if="${antiPick.antiHeroImageName}">
@@ -37,7 +37,7 @@
 
 		<!-- 一列目（前半） -->
 		<div class="hero-picker-row">
-			<th:block th:each="hero, stat : ${heroListWithAntiPick}">
+			<th:block th:each="hero, stat : ${heroListWithCommonAntiPick}">
 				<th:block th:if="${stat.index < stat.size / 2}">
 
 					<div th:id="'hero-' + ${stat.index}" class="hero">
@@ -59,7 +59,7 @@
 
 		<!-- 二列目（後半） -->
 		<div class="hero-picker-row">
-			<th:block th:each="hero, stat : ${heroListWithAntiPick}">
+			<th:block th:each="hero, stat : ${heroListWithCommonAntiPick}">
 				<th:block th:if="${stat.index >= stat.size / 2}">
 
 					<div th:id="'hero-' + ${stat.index}" class="hero">
@@ -80,20 +80,18 @@
 		</div>
 
 	</div>
-	
-	<a class="mypage-btn" th:href="@{/anti-pick}">
-		マイページ
+
+	<a sec:authorize="isAuthenticated()" class="mypage-btn" th:href="@{/anti-pick}">
+		マイアンチピック
 	</a>
-	<div class="hover-menu">
-		<div sec:authorize="isAuthenticated()">
-			<a th:href="@{/anti-pick/} + ${#authentication.Principal.getUser().getId()}">
-				マイアンチピック
-			</a>
-			<a>アンチピック登録</a>
-			<form th:action="@{/logout}" method="post">
-				<input type="submit" name="logout" value="ログアウト" />
-			</form>
-		</div>
+	<a sec:authorize="!isAuthenticated()" class="mypage-btn" th:href="@{/anti-pick}">
+		ログイン
+	</a>
+	
+	<div sec:authorize="isAuthenticated()">
+		<form th:action="@{/logout}" method="post">
+			<button type="submit">ログアウト</button>
+		</form>
 	</div>
 
 	<script th:src="@{/js/top.js}"></script>

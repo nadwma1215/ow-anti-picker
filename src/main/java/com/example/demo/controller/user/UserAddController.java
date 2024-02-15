@@ -41,6 +41,6 @@ public class UserAddController {
 
 		mapper.save(dozer.map(form, User.class));
 
-		return "redirect:/";
+		return "redirect:/login";
 	}
 }

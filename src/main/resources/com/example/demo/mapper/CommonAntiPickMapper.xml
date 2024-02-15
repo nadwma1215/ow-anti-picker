@@ -3,33 +3,40 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- Mapperとxmlのマッピング -->
-<mapper namespace="com.example.demo.mapper.AntiPickMapper">
+<mapper namespace="com.example.demo.mapper.CommonAntiPickMapper">
 
-	<select id="findByUserIdWithHero" resultMap="findByUserIdWithHero">
-		SELECT
-			anti_pick.id,
-			anti_pick.user_id,
-			anti_pick.hero_id,
-			anti_pick.anti_hero_id,
-			anti_pick.reason,
-			anti_pick.created,
-			anti_pick.modified,
-			h1.name as hero_name,
-			h1.image_name as hero_image_name,
-			h2.name as anti_hero_name,
-			h2.image_name as anti_hero_image_name
-		FROM anti_pick
-		LEFT JOIN hero as h1
-			ON anti_pick.hero_id = h1.id
-		LEFT JOIN hero as h2
-			ON anti_pick.anti_hero_id = h2.id
-		WHERE user_id = #{userId}
+	<select id="findAll"
+		resultType="com.example.demo.entity.CommonAntiPick">
+		SELECT * FROM common_anti_pick
 	</select>
 
-	<resultMap id="findByUserIdWithHero"
-		type="com.example.demo.dto.AntiPickWithHeroDTO">
+	<select id="findAllWithHero" resultMap="findAllWithHero">
+		SELECT
+		common_anti_pick.id,
+		common_anti_pick.hero_id,
+		common_anti_pick.anti_hero_id,
+		common_anti_pick.reason,
+		common_anti_pick.created,
+		common_anti_pick.modified,
+		h1.name as hero_name,
+		h1.image_name as
+		hero_image_name,
+		h2.name as anti_hero_name,
+		h2.image_name as
+		anti_hero_image_name
+		FROM common_anti_pick
+		LEFT JOIN hero as
+		h1
+		ON
+		common_anti_pick.hero_id = h1.id
+		LEFT JOIN hero as h2
+		ON
+		common_anti_pick.anti_hero_id = h2.id
+	</select>
+
+	<resultMap id="findAllWithHero"
+		type="com.example.demo.dto.CommonAntiPickWithHeroDTO">
 		<id property="id" column="id" />
-		<result property="userId" column="user_id" />
 		<result property="heroId" column="hero_id" />
 		<result property="antiHeroId" column="anti_hero_id" />
 		<result property="reason" column="reason" />
@@ -44,8 +51,7 @@
 
 	<!-- インサート -->
 	<insert id="save">
-		INSERT INTO anti_pick(
-		user_id,
+		INSERT INTO common_anti_pick(
 		hero_id,
 		anti_hero_id,
 		reason,
@@ -53,7 +59,6 @@
 		modified
 		)
 		values(
-		#{userId},
 		#{heroId},
 		#{antiHeroId},
 		#{reason},

@@ -4,14 +4,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
 
 <body>
 
 	Anti Hero Add!!!
 
-	<form th:action="@{/anti-pick}" method="post" th:object="${antiPickAddForm}">
-		<input type="hidden" th:field="*{userId}" th:value="${#authentication.Principal.getUser().getId()}" />
+	<form th:action="@{/manage/common-anti-pick/add}" method="post" th:object="${commonAntiPickAddForm}">
 		<div>
 			<label for="heroId">ヒーロー</label>
 			<select th:field="*{heroId}">

@@ -4,15 +4,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * アンチピック Entity
+ * 共通アンチピック Entity
  */
 @Data
 @EqualsAndHashCode(callSuper=true)
-public class AntiPick extends AbstractEntity{
+public class CommonAntiPick extends AbstractEntity{
 	
 	private int id;
-	
-	private int userId;
 	
 	private int heroId;
 	

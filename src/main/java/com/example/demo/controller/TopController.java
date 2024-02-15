@@ -6,9 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.demo.dto.HeroWithAntiPickDTO;
-import com.example.demo.entity.AntiPick;
-import com.example.demo.mapper.AntiPickMapper;
+import com.example.demo.dto.HeroWithCommonAntiPickDTO;
 import com.example.demo.mapper.HeroMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -18,18 +16,14 @@ import lombok.RequiredArgsConstructor;
 public class TopController {
 
 	private final HeroMapper heroMapper;
-	private final AntiPickMapper antiPickMapper;
 
-	@GetMapping("/")
+	@GetMapping({ "top", "/" })
 	public String top(Model model) {
 
-		List<HeroWithAntiPickDTO> heroListWithAntiPick = heroMapper.findAllWithAntiPick();
-		HeroWithAntiPickDTO.sort(heroListWithAntiPick);
-		
-		List<AntiPick> antiPickList = antiPickMapper.findAll();
+		List<HeroWithCommonAntiPickDTO> heroListWithCommonAntiPick = heroMapper.findAllWithCommonAntiPick();
+		HeroWithCommonAntiPickDTO.sort(heroListWithCommonAntiPick);
 
-		model.addAttribute("heroListWithAntiPick", heroListWithAntiPick);
-		model.addAttribute(antiPickList);
+		model.addAttribute("heroListWithCommonAntiPick", heroListWithCommonAntiPick);
 
 		return "top";
 	}

@@ -13,7 +13,7 @@
 	↓アンチピックを追加する
 
 	<th:block th:each="hero : ${heroList}">
-		<li><a th:href="@{anti-pick/add/} + ${hero.id}" th:text="${hero.name}"></a></li>
+		<li><a th:href="@{/manage/common-anti-pick/add/} + ${hero.id}" th:text="${hero.name}"></a></li>
 	</th:block>
 
 	<br />
@@ -27,7 +27,7 @@
 		</thead>
 
 		<tbody>
-			<th:block th:each="antiPick : ${AntiPickWithHeroDTOList}">
+			<th:block th:each="antiPick : ${commonAntiPickWithHeroDTOList}">
 				<tr>
 					<td th:text="${antiPick.heroName}"></td>
 					<td th:text="${antiPick.antiHeroName}"></td>

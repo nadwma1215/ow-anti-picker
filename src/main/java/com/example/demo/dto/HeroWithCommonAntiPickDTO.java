@@ -16,12 +16,12 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class HeroWithAntiPickDTO extends Hero {
+public class HeroWithCommonAntiPickDTO extends Hero {
 
 	/**
-	 * 紐づくアンチピックを取得
+	 * 紐づく共通アンチピックを取得
 	 */
-	private List<AntiPickWithHeroDTO> antiPickWithHeroDTOList;
+	private List<CommonAntiPickWithHeroDTO> commonAntiPickWithHeroDTOList;
 
 	/**
 	 * ヒーローリストの並び替え処理
@@ -29,7 +29,7 @@ public class HeroWithAntiPickDTO extends Hero {
 	 * ヒーローリストを①日本語、②アルファベットの順でソートする
 	 * @param heroList
 	 */
-	public static void sort(List<HeroWithAntiPickDTO> heroListWithAntiPick) {
+	public static void sort(List<HeroWithCommonAntiPickDTO> heroListWithAntiPick) {
 
 		Collator collator = Collator.getInstance(Locale.JAPAN);
 		collator.setStrength(Collator.SECONDARY);

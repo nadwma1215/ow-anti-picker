@@ -24,13 +24,13 @@ public class WebSecurityConfig {
 						// 静的リソースファイルの設定
 						.requestMatchers("/img/**", "/fonts/**", "/js/**", "/css/**").permitAll()
 						.requestMatchers("/login", "/", "/user/add").permitAll()
-						.requestMatchers("/manage/**").hasRole("MANAGE")
+						.requestMatchers("/manage/**").authenticated()
 						.anyRequest().authenticated())
 				.formLogin((form) -> form
 						// ログインページへのパスを指定→コントローラーにもGET、/loginでの処理を記載する必要がある
 						.loginPage("/login")
 						// ログイン成功時に表示される画面へのパス
-						.defaultSuccessUrl("/")
+						.defaultSuccessUrl("/", true)
 						.permitAll())
 				.logout((logout) -> logout.permitAll());
 
