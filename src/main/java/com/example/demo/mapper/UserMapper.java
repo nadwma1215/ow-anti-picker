@@ -14,5 +14,7 @@ public interface UserMapper {
 	public List<User> findAll();
 	
 	public Optional<User> findByName(@Param("name") String name);
+	
+	public void save(User user);
 
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	ユーザ登録
+	<form method="post" th:action="@{/user/add}" th:object="${userAddForm}">
+		<label for="name">ユーザー名</label>
+		<input type="text" th:field="*{name}">
+		<label for="password">パスワード</label>
+		<input type="password" th:field="*{password}">
+		<div>
+			<button type="submit">登録</button>
+		</div>
+	</form>
+	
+	<a th:href="@{/login}">ログイン画面へ</a>
+
+</body>
+
+</html>

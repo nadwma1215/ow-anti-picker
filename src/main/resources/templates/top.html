@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link th:href="@{/css/main.css}" rel="stylesheet" />
-	<script th:src="@{/js/top.js}"></script>
 </head>
 
 <body class="top-content street">
@@ -85,11 +84,19 @@
 	<a class="mypage-btn" th:href="@{/anti-pick}">
 		マイページ
 	</a>
-	
-	<form th:action="@{/logout}" method="post">
-        <input type="submit" name="logout" value="ログアウト"/>
-    </form>
+	<div class="hover-menu">
+		<div sec:authorize="isAuthenticated()">
+			<a th:href="@{/anti-pick/} + ${#authentication.Principal.getUser().getId()}">
+				マイアンチピック
+			</a>
+			<a>アンチピック登録</a>
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" name="logout" value="ログアウト" />
+			</form>
+		</div>
+	</div>
 
+	<script th:src="@{/js/top.js}"></script>
 </body>
 
 </html>

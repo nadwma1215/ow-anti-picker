@@ -23,7 +23,7 @@ public class WebSecurityConfig {
 				.authorizeHttpRequests((requests) -> requests
 						// 静的リソースファイルの設定
 						.requestMatchers("/img/**", "/fonts/**", "/js/**", "/css/**").permitAll()
-						.requestMatchers("/login", "/").permitAll()
+						.requestMatchers("/login", "/", "/user/add").permitAll()
 						.requestMatchers("/manage/**").hasRole("MANAGE")
 						.anyRequest().authenticated())
 				.formLogin((form) -> form

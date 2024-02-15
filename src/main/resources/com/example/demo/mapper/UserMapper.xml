@@ -10,10 +10,27 @@
 		SELECT * FROM user
 	</select>
 	
-	<select id="findByName" resultType="com.example.demo.entity.User">
+	<select id="findByName"
+		resultType="com.example.demo.entity.User">
 		SELECT *
 		FROM user
 		WHERE name = #{name}
 	</select>
 	
+	<!-- インサート -->
+	<insert id="save">
+		INSERT INTO user(
+			name,
+			password,
+			created,
+			modified
+		)
+		values(
+			#{name},
+			#{password},
+			NOW(),
+			NOW()
+		)
+	</insert>
+
 </mapper>
