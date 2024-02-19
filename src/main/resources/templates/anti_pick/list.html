@@ -4,40 +4,63 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link rel="preload" as="font" th:href="@{/fonts/07LogoTypeGothic7.ttf}" crossorigin />
 	<link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
 
-<body>
+<body class="anti-pick-edit-body">
 
-	anti!!!
-	↓アンチピックを追加する
+	<div class="nav-bar">
+		<div class="logo">
+			<a th:href="@{/}"><img class="logo" th:src="@{/img/logo.png}"></a>
+		</div>
+		<div class="nav-menu">
+			<a sec:authorize="isAuthenticated()" class="mypage-btn" th:href="@{/my-anti-pick}">
+				マイアンチピック
+			</a>
+			<a sec:authorize="!isAuthenticated()" class="mypage-btn" th:href="@{/login}">
+				ログイン
+			</a>
+		</div>
+	</div>
 
-	<th:block th:each="hero : ${heroList}">
-		<li><a th:href="@{anti-pick/add/} + ${hero.id}" th:text="${hero.name}"></a></li>
-	</th:block>
+	<form th:action="@{/anti-pick}" method="post" th:object="${antiPickListForm}" class="anti-pick-update-form">
 
-	<br />
+		<button type="submit" class="float-btn">アンチピックを更新する</button>
 
-	<table border="1">
-		<thead>
-			<tr>
-				<th>ヒーロー</th>
-				<th>アンチピック</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<th:block th:each="antiPick : ${AntiPickWithHeroDTOList}">
+		<table class="pick-hero-list">
+			<th:block th:each="hero : ${heroList}">
 				<tr>
-					<td th:text="${antiPick.heroName}"></td>
-					<td th:text="${antiPick.antiHeroName}"></td>
+					<th class="pick-hero-th">
+						<img class="pick-hero-icon" draggable="false"
+							th:src="@{/img/hero/{imageName}(imageName=${hero.imageName})}"></img>
+					</th>
+					<td class="droparia" name="droparia" th:id="${'hero-id-' + hero.id}"></td>
 				</tr>
 			</th:block>
-		</tbody>
-	</table>
+		</table>
+		
+		<div class="removearia" id="removearia">
+			<img draggable="false" th:src="@{/img/trash.svg}" />
+		</div>
+	</form>
 
-	<a th:href="@{/}">トップ画面に戻る</a>
-
+	<div class="anti-select-list">
+		<span>ドラッグ&ドロップでリストへ配置</span>
+		<div class="anti-pick-hero-list">
+			<!--/*
+			idにhero_idを付与して識別
+			アンチピックをドロップする側にはidは付与しない（重複してしまう）
+		*/-->
+			<th:block th:each="hero : ${heroList}">
+				<div>
+					<img class="anti-pick-hero-icon-for-update" th:name="${'anti-hero-id-' + hero.id}" th:id="${'anti-hero-id-' + hero.id}"
+						th:src="@{/img/hero/{imageName}(imageName=${hero.imageName})}"></img>
+				</div>
+			</th:block>
+		</div>
+	</div>
+	<script th:src="@{/js/antiPickList.js}"></script>
 </body>
 
 </html>

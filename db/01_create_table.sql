@@ -50,7 +50,7 @@ CREATE TABLE `anti_pick` (
   `created` datetime NOT NULL COMMENT '登録日時',
   `modified` datetime NOT NULL COMMENT '更新日時',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `hero_id_anti_hero_id_unique` (`hero_id`,`anti_hero_id`),
+  UNIQUE KEY `user_id_hero_id_anti_hero_id_unique` (`user_id`,`hero_id`,`anti_hero_id`),
   CONSTRAINT `anti_pick_user_key` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `anti_pick_hero_key` FOREIGN KEY (`hero_id`) REFERENCES `hero` (`id`),
   CONSTRAINT `anti_pick_anti_hero_key` FOREIGN KEY (`anti_hero_id`) REFERENCES `hero` (`id`)

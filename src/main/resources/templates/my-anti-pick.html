@@ -8,15 +8,16 @@
 	<link rel="preload" as="font" th:href="@{/fonts/07LogoTypeGothic7.ttf}" crossorigin />
 </head>
 
-<body class="top-content street">
+<body class="top-content colosseo">
 
 	<div class="nav-bar">
 		<div class="logo">
 			<a th:href="@{/}"><img class="logo" th:src="@{/img/logo.png}"></a>
 		</div>
 		<div class="nav-menu">
-			<a sec:authorize="isAuthenticated()" class="mypage-btn" th:href="@{/my-anti-pick}">
-				マイアンチピック
+			<a th:href="@{/anti-pick}">アンチピックを編集</a>
+			<a sec:authorize="isAuthenticated()" class="mypage-btn" th:href="@{/}">
+				トップに戻る
 			</a>
 			<a sec:authorize="!isAuthenticated()" class="mypage-btn" th:href="@{/login}">
 				ログイン
@@ -25,9 +26,9 @@
 	</div>
 
 	<!-- アンチピックヒーロー -->
-	<th:block th:each="hero, heroStat : ${heroListWithCommonAntiPick}">
+	<th:block th:each="hero, heroStat : ${heroWithAntiPickDTO}">
 		<div th:id="'hero-' + ${heroStat.index} + '-anti-pick-list'" class="anti-pick-list display-none">
-			<th:block th:each="antiPick, antiPickStat : ${hero.commonAntiPickWithHeroDTOList}">
+			<th:block th:each="antiPick, antiPickStat : ${hero.antiPickWithHeroDTOList}">
 
 				<div class="anti-pick-hero">
 					<th:block th:if="${antiPick.antiHeroImageName}">
@@ -52,7 +53,7 @@
 
 		<!-- 一列目（前半） -->
 		<div class="hero-picker-row">
-			<th:block th:each="hero, stat : ${heroListWithCommonAntiPick}">
+			<th:block th:each="hero, stat : ${heroWithAntiPickDTO}">
 				<th:block th:if="${stat.index < stat.size / 2}">
 
 					<div th:id="'hero-' + ${stat.index}" class="hero">
@@ -74,7 +75,7 @@
 
 		<!-- 二列目（後半） -->
 		<div class="hero-picker-row">
-			<th:block th:each="hero, stat : ${heroListWithCommonAntiPick}">
+			<th:block th:each="hero, stat : ${heroWithAntiPickDTO}">
 				<th:block th:if="${stat.index >= stat.size / 2}">
 
 					<div th:id="'hero-' + ${stat.index}" class="hero">

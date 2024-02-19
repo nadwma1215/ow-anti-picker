@@ -5,24 +5,29 @@
 <!-- Mapperとxmlのマッピング -->
 <mapper namespace="com.example.demo.mapper.AntiPickMapper">
 
-	<select id="findByUserIdWithHero" resultMap="findByUserIdWithHero">
+	<select id="findByUserIdWithHero"
+		resultMap="findByUserIdWithHero">
 		SELECT
-			anti_pick.id,
-			anti_pick.user_id,
-			anti_pick.hero_id,
-			anti_pick.anti_hero_id,
-			anti_pick.reason,
-			anti_pick.created,
-			anti_pick.modified,
-			h1.name as hero_name,
-			h1.image_name as hero_image_name,
-			h2.name as anti_hero_name,
-			h2.image_name as anti_hero_image_name
+		anti_pick.id,
+		anti_pick.user_id,
+		anti_pick.hero_id,
+		anti_pick.anti_hero_id,
+		anti_pick.reason,
+		anti_pick.created,
+		anti_pick.modified,
+		h1.name as hero_name,
+		h1.image_name as
+		hero_image_name,
+		h2.name as anti_hero_name,
+		h2.image_name as
+		anti_hero_image_name
 		FROM anti_pick
 		LEFT JOIN hero as h1
-			ON anti_pick.hero_id = h1.id
+		ON
+		anti_pick.hero_id = h1.id
 		LEFT JOIN hero as h2
-			ON anti_pick.anti_hero_id = h2.id
+		ON anti_pick.anti_hero_id
+		= h2.id
 		WHERE user_id = #{userId}
 	</select>
 
@@ -60,6 +65,29 @@
 		NOW(),
 		NOW()
 		)
+	</insert>
+
+	<!-- 一括登録 -->
+	<insert id="saveAll">
+		INSERT INTO anti_pick
+		(
+		user_id,
+		hero_id,
+		anti_hero_id,
+		created,
+		modified
+		)
+		VALUES
+		<foreach collection="antiPickList" item="antiPick"
+			separator=",">
+			(
+			#{antiPick.userId},
+			#{antiPick.heroId},
+			#{antiPick.antiHeroId},
+			NOW(),
+			NOW()
+			)
+		</foreach>
 	</insert>
 
 </mapper>

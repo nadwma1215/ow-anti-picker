@@ -17,7 +17,7 @@ public class TopController {
 
 	private final HeroMapper heroMapper;
 
-	@GetMapping({ "top", "/" })
+	@GetMapping({ "/top", "/" })
 	public String top(Model model) {
 
 		List<HeroWithCommonAntiPickDTO> heroListWithCommonAntiPick = heroMapper.findAllWithCommonAntiPick();

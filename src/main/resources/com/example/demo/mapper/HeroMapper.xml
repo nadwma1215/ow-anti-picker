@@ -26,9 +26,9 @@
 		FROM hero
 		LEFT JOIN anti_pick
 		ON hero.id = anti_pick.hero_id
+		AND anti_pick.user_id = #{userId}
 		LEFT JOIN hero as h
 		ON anti_pick.anti_hero_id = h.id
-		WHERE user_id = #{userId}
 	</select>
 
 	<resultMap id="findByUserIdWithAntiPick"

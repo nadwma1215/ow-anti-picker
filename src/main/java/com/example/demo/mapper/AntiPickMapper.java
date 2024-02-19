@@ -14,5 +14,7 @@ public interface AntiPickMapper {
 	public List<AntiPickWithHeroDTO> findByUserIdWithHero(@Param("userId") int userId);
 
 	public int save(AntiPick antiPick);
+	
+	public void saveAll(List<AntiPick> antiPickList); 
 
 }
