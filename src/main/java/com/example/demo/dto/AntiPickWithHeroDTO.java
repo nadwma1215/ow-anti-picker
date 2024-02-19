@@ -15,21 +15,26 @@ public class AntiPickWithHeroDTO extends AntiPick{
 	/**
 	 * ヒーロー名
 	 */
-	private String HeroName;
+	private String heroName;
 	
 	/**
 	 * ヒーローの画像名
 	 */
-	private String HeroImageName;
+	private String heroImageName;
+	
+	/**
+	 * アンチピックのヒーローID
+	 */
+	private int antiHeroId;
 	
 	/**
 	 * アンチピックのヒーロー名
 	 */
-	private String AntiHeroName;
+	private String antiHeroName;
 	
 	/**
 	 * アンチピックのヒーローの画像名
 	 */
-	private String AntiHeroImageName;
+	private String antiHeroImageName;
 
 }

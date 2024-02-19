@@ -41,17 +41,26 @@ CREATE TABLE `common_anti_pick` (
   CONSTRAINT `common_anti_pick_anti_hero_key` FOREIGN KEY (`anti_hero_id`) REFERENCES `hero` (`id`)
 ) ENGINE=InnoDB CHARSET=utf8mb3 COMMENT='共通アンチピック';
 
-CREATE TABLE `anti_pick` (
+CREATE TABLE `anti_pick_history` (
   `id` int(5) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
   `user_id` int(6) unsigned NOT NULL COMMENT 'ユーザID',
+  `created` datetime NOT NULL COMMENT '登録日時',
+  `modified` datetime NOT NULL COMMENT '更新日時',
+  PRIMARY KEY (`id`),
+  CONSTRAINT `anti_pick_user_key` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB CHARSET=utf8mb3 COMMENT='アンチピック履歴';
+
+CREATE TABLE `anti_pick` (
+  `id` int(9) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `anti_pick_history_id` int(5) unsigned NOT NULL COMMENT 'アンチピックID',
   `hero_id` int(3) unsigned NOT NULL COMMENT 'ヒーローID',
   `anti_hero_id` int(3) unsigned NOT NULL COMMENT 'アンチヒーローID',
   `reason` text COMMENT '理由',
   `created` datetime NOT NULL COMMENT '登録日時',
   `modified` datetime NOT NULL COMMENT '更新日時',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `user_id_hero_id_anti_hero_id_unique` (`user_id`,`hero_id`,`anti_hero_id`),
-  CONSTRAINT `anti_pick_user_key` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  UNIQUE KEY `anti_pick_history_id_hero_id_anti_hero_id_unique` (`anti_pick_history_id`,`hero_id`,`anti_hero_id`),
+  CONSTRAINT `anti_pick_history_key` FOREIGN KEY (`anti_pick_history_id`) REFERENCES `anti_pick_history` (`id`),
   CONSTRAINT `anti_pick_hero_key` FOREIGN KEY (`hero_id`) REFERENCES `hero` (`id`),
   CONSTRAINT `anti_pick_anti_hero_key` FOREIGN KEY (`anti_hero_id`) REFERENCES `hero` (`id`)
 ) ENGINE=InnoDB CHARSET=utf8mb3 COMMENT='アンチピック';

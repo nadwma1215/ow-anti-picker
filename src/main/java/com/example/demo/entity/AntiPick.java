@@ -12,7 +12,7 @@ public class AntiPick extends AbstractEntity{
 	
 	private int id;
 	
-	private int userId;
+	private int antiPickHistoryId;
 	
 	private int heroId;
 	

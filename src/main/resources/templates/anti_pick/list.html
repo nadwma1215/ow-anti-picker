@@ -29,17 +29,27 @@
 		<button type="submit" class="float-btn">アンチピックを更新する</button>
 
 		<table class="pick-hero-list">
-			<th:block th:each="hero : ${heroList}">
+			<th:block th:each="hero : ${heroWithAntiPickDTO}">
 				<tr>
 					<th class="pick-hero-th">
 						<img class="pick-hero-icon" draggable="false"
 							th:src="@{/img/hero/{imageName}(imageName=${hero.imageName})}"></img>
 					</th>
-					<td class="droparia" name="droparia" th:id="${'hero-id-' + hero.id}"></td>
+					<td class="droparia" name="droparia" th:id="${'hero-id-' + hero.id}">
+						<th:block th:each="antiPick : ${hero.getAntiPickWithHeroDTOList}">
+							<div name="add-anti-pick">
+								<img class="anti-pick-hero-icon-for-update"
+									th:name="${'anti-hero-id-' + hero.id +'About' + antiPick.antiHeroId}"
+									th:src="@{/img/hero/{imageName}(imageName=${antiPick.antiHeroImageName})}">
+								<input type="hidden" th:name="${'heroIdMap[' + hero.id + '][]'}"
+									th:value="${antiPick.antiHeroId}">
+							</div>
+						</th:block>
+					</td>
 				</tr>
 			</th:block>
 		</table>
-		
+
 		<div class="removearia" id="removearia">
 			<img draggable="false" th:src="@{/img/trash.svg}" />
 		</div>
@@ -52,9 +62,10 @@
 			idにhero_idを付与して識別
 			アンチピックをドロップする側にはidは付与しない（重複してしまう）
 		*/-->
-			<th:block th:each="hero : ${heroList}">
+			<th:block th:each="hero : ${heroWithAntiPickDTO}">
 				<div>
-					<img class="anti-pick-hero-icon-for-update" th:name="${'anti-hero-id-' + hero.id}" th:id="${'anti-hero-id-' + hero.id}"
+					<img class="anti-pick-hero-icon-for-update" th:name="${'anti-hero-id-' + hero.id}"
+						th:id="${'anti-hero-id-' + hero.id}"
 						th:src="@{/img/hero/{imageName}(imageName=${hero.imageName})}"></img>
 				</div>
 			</th:block>

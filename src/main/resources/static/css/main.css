@@ -275,6 +275,10 @@
 	padding: 4px;
 }
 
+.droparia > div{
+	display: inline-block;
+}
+
 .removearia {
 	display: flex;
 	justify-content: center;

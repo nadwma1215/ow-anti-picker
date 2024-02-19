@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.dto.HeroWithAntiPickDTO;
 import com.example.demo.entity.AntiPick;
-import com.example.demo.entity.Hero;
+import com.example.demo.entity.AntiPickHistory;
 import com.example.demo.entity.UserDetailsImpl;
 import com.example.demo.form.anti_pick.AntiPickListForm;
+import com.example.demo.mapper.AntiPickHistoryMapper;
 import com.example.demo.mapper.AntiPickMapper;
 import com.example.demo.mapper.HeroMapper;
 
@@ -27,11 +28,11 @@ public class AntiPickListController {
 	
 	private final HeroMapper heroMapper;
 	private final AntiPickMapper antiPickMapper;
+	private final AntiPickHistoryMapper antiPickHistoryMapper;
 	
 	@GetMapping("/anti-pick")
 	public String index(Model model, AntiPickListForm form, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 		
-		List<Hero> heroList = heroMapper.findAll();
 		List<HeroWithAntiPickDTO> heroWithAntiPickDTO = heroMapper.findByUserIdWithAntiPick(userDetails.getUser().getId());
 		
 		// listの初期化
@@ -52,13 +53,20 @@ public class AntiPickListController {
 		// formにlistを格納
 		form.setHeroIdMap(map);
 		
-		model.addAttribute(heroList);
+		model.addAttribute("heroWithAntiPickDTO", heroWithAntiPickDTO);
 		
 		return "anti_pick/list";
 	}
 	
+	// TODO:serviceクラスに切り出してトランザクション管理する
 	@PostMapping("/anti-pick")
 	public String register(Model model, AntiPickListForm form, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+		
+		// アンチピック履歴を登録
+		AntiPickHistory antiPickHistory = new AntiPickHistory();
+		antiPickHistory.setUserId(userDetails.getUser().getId());
+		
+		antiPickHistoryMapper.save(antiPickHistory);
 		
 		// 登録するアンチピックのリストの初期化
 		List<AntiPick> antiPickList = new ArrayList<>();
@@ -71,7 +79,7 @@ public class AntiPickListController {
 				// ヒーローIDとアンチヒーローIDをsetしてListに追加
 				antiPickListTmp.forEach(antiPickId -> {
 					AntiPick antiPickTmp = new AntiPick();
-					antiPickTmp.setUserId(userDetails.getUser().getId());
+					antiPickTmp.setAntiPickHistoryId(antiPickHistory.getId());
 					antiPickTmp.setHeroId(heroId);
 					antiPickTmp.setAntiHeroId(antiPickId);
 					antiPickList.add(antiPickTmp);

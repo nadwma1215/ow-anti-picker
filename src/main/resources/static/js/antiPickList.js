@@ -74,7 +74,7 @@ window.addEventListener('DOMContentLoaded', () => {
 					var antiPickHeroIcon = document.getElementById(selectedHeroElmName);
 					var elm = antiPickHeroIcon.cloneNode(false);
 
-					// 各属性を編集し、dropariaに追加
+					// 各属性を編集
 					elm.removeAttribute("id");
 					elm.setAttribute("name", elm.getAttribute("name") + "About" + dropHeroId);
 					elm.ondragstart = onDragStartEvent;
@@ -84,9 +84,14 @@ window.addEventListener('DOMContentLoaded', () => {
 					tag.setAttribute("type", "hidden");
 					tag.setAttribute("name", "heroIdMap[" + dropHeroId + "][]");
 					tag.setAttribute("value", selectedHeroId);
+					
+					// 上記のelementをまとめるdivタグを作成し、dropariaに追加
+					var div = document.createElement("div");
+					div.setAttribute("name","add-anti-pick");
+					div.appendChild(tag);
+					div.appendChild(elm);
 
-					elm.appendChild(tag);
-					event.currentTarget.appendChild(elm);
+					event.currentTarget.appendChild(div);
 				} else {
 					alert("既に存在する組み合わせです。");
 				}
@@ -113,7 +118,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		if (selectedHeroElmName.indexOf("About") != -1) {
 			document.getElementsByName(selectedHeroElmName).forEach(element => {
-				element.remove();
+				element.parentNode.remove();
 			});
 		}
 	}

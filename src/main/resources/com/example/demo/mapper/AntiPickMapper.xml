@@ -47,31 +47,11 @@
 			column="anti_hero_image_name" />
 	</resultMap>
 
-	<!-- インサート -->
-	<insert id="save">
-		INSERT INTO anti_pick(
-		user_id,
-		hero_id,
-		anti_hero_id,
-		reason,
-		created,
-		modified
-		)
-		values(
-		#{userId},
-		#{heroId},
-		#{antiHeroId},
-		#{reason},
-		NOW(),
-		NOW()
-		)
-	</insert>
-
 	<!-- 一括登録 -->
 	<insert id="saveAll">
 		INSERT INTO anti_pick
 		(
-		user_id,
+		anti_pick_history_id,
 		hero_id,
 		anti_hero_id,
 		created,
@@ -81,7 +61,7 @@
 		<foreach collection="antiPickList" item="antiPick"
 			separator=",">
 			(
-			#{antiPick.userId},
+			#{antiPick.antiPickHistoryId},
 			#{antiPick.heroId},
 			#{antiPick.antiHeroId},
 			NOW(),
