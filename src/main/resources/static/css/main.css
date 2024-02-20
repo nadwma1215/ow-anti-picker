@@ -73,14 +73,14 @@
 }
 
 .street {
-	background-image: url("../img/street_blur.jpg");
+	background-image: url("../img/bg/street_blur.webp");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
 }
 
 .colosseo {
-	background-image: url("../img/colosseo_blur.jpg");
+	background-image: url("../img/bg/colosseo_blur.webp");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
