@@ -5,10 +5,16 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link rel="preload" as="font" th:href="@{/fonts/07LogoTypeGothic7.ttf}" crossorigin />
+	<link rel="preload" th:href="@{/js/main.js}" as="script">
+	<link rel="preload" th:href="@{/js/antiPickList.js}" as="script">
+	<link rel="preload" th:href="@{/css/main.css}" as="style">
 	<link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
 
 <body class="anti-pick-edit-body">
+	<th:block th:if="${!#strings.isEmpty(message)}">
+		<div class="flash-message" th:text="${message}"></div>
+	</th:block>
 
 	<div class="nav-bar">
 		<div class="logo">
@@ -28,7 +34,7 @@
 
 		<button type="submit" class="float-btn">アンチピックを更新する</button>
 
-		<table class="pick-hero-list">
+		<table>
 			<th:block th:each="hero : ${heroWithAntiPickDTO}">
 				<tr>
 					<th class="pick-hero-th">
@@ -72,6 +78,7 @@
 		</div>
 	</div>
 	<script th:src="@{/js/antiPickList.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
 </body>
 
 </html>

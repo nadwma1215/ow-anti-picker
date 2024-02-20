@@ -275,7 +275,7 @@
 	padding: 4px;
 }
 
-.droparia > div{
+.droparia>div {
 	display: inline-block;
 }
 
@@ -285,6 +285,8 @@
 	width: 100px;
 	background-color: rgba(255, 0, 0, 0.1);
 	flex-grow: 1;
+	/* 兄弟要素のtableタグのborder-spacingが2pxなので合わせて設定 */
+	margin: 2px;
 }
 
 .removearia>img {
@@ -419,4 +421,16 @@ body {
 
 .opacity-50 {
 	opacity: 50%;
+}
+
+.flash-message {
+	background-color: var(--ow-blue);
+	padding: 0.5rem;
+	margin: auto;
+	margin-bottom: 8px;
+	width: 75%;
+	max-width: 560px;
+	border-radius: 8px;
+	color: white;
+	text-align: center;
 }
