@@ -398,6 +398,7 @@ body {
 	box-sizing: border-box;
 	margin: 0px;
 	font-family: top-font;
+	line-height: 100%;
 }
 
 .content-center {
