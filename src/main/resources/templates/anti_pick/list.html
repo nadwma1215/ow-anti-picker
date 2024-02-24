@@ -45,7 +45,7 @@
 						<th:block th:each="antiPick : ${hero.getAntiPickWithHeroDTOList}">
 							<div name="add-anti-pick">
 								<img class="anti-pick-hero-icon-for-update"
-									th:name="${'anti-hero-id-' + hero.id +'About' + antiPick.antiHeroId}"
+									th:name="${'anti-hero-id-' + antiPick.antiHeroId +'About' + hero.id}"
 									th:src="@{/img/hero/{imageName}(imageName=${antiPick.antiHeroImageName})}">
 								<input type="hidden" th:name="${'heroIdMap[' + hero.id + '][]'}"
 									th:value="${antiPick.antiHeroId}">

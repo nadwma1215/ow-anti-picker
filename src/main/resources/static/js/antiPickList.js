@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			// formに今回のヒーローとアンチピックの組み合わせがまだ登録されていないかのチェック
 			var added = false;
 
-			// ドラッグしているヒーローとドロップしたエリアのヒーローが異なる場合に追加処理
+			// ドラッグしているヒーローとドロップしたエリアのヒーローが異なる場合にヒーローの追加処理
 			if (selectedHeroId != dropHeroId) {
 				// formに今回のヒーローとアンチピックの組み合わせがまだ登録されていないかのチェック
 				for (i = 0; i < formElements.length; i++) {
@@ -60,13 +60,13 @@ window.addEventListener('DOMContentLoaded', () => {
 					}
 				}
 
-				// 重複がなかった場合、追加処理
+				// 重複がなかった場合、ヒーローの追加処理
 				if (!added) {
 					// ドラッグしたイベントのname属性の文字列にAboutが含まれている場合、
 					// アイコンを移動するために元のイベントを削除
 					if (selectedHeroElmNameTmp.indexOf("About") != -1) {
 						document.getElementsByName(selectedHeroElmNameTmp).forEach(element => {
-							element.remove();
+							element.parentNode.remove();
 						});
 					}
 
