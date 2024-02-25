@@ -64,9 +64,10 @@
 .top-content {
 	/* bodyにデフォルトで8pxのマージンがあるので打ち消し */
 	margin: 0px;
+	padding: 0px 24px;
 	padding-top: 72px;
 	position: relative;
-	height: 100vh;
+	height: 100dvh;
 	overflow: hidden;
 	font-family: top-font;
 	box-sizing: border-box;
@@ -91,7 +92,7 @@
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
-	gap: 5px;
+	gap: 4%;
 	overflow: scroll;
 	box-sizing: border-box;
 	padding: 4px 0px;
@@ -177,9 +178,8 @@
 	white-space: nowrap;
 	text-align: center;
 	background-color: white;
-	line-height: 120%;
 	border-radius: 2px;
-	padding: 0px 2px;
+	padding: 2px;
 	z-index: 100;
 	letter-spacing: 0.1rem;
 }
@@ -228,6 +228,7 @@
 	background: linear-gradient(45deg, #dbdee7 0%, #95aaca 100%);
 	background-color: lightgray;
 	padding: 72px 16px;
+	padding-bottom: 160px;
 }
 
 .anti-pick-update-form {
@@ -394,7 +395,7 @@
 /* ---- */
 
 body {
-	min-height: 100vh;
+	min-height: 100dvh;
 	box-sizing: border-box;
 	margin: 0px;
 	font-family: top-font;
@@ -402,7 +403,7 @@ body {
 }
 
 .content-center {
-	height: 100vh;
+	height: 100dvh;
 	box-sizing: border-box;
 	display: flex;
 	justify-content: center;
